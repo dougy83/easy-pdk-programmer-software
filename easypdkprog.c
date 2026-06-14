@@ -27,11 +27,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "fpdkiccalib.h"
 #include "fpdkicserial.h"
 #include "fpdkihex8.h"
+#include "fpdkhwtest.h"
 #include "argp.h"
 
 const char *argp_program_version                = "easypdkprog 1.3";
 static const char easypdkprog_doc[]             = "easypdkprog -- read, write and execute programs on PADAUK microcontroller\nhttps://free-pdk.github.io";
-static const char easypdkprog_args_doc[]        = "list|probe|read|write|erase|start [FILE]";
+static const char easypdkprog_args_doc[]        = "list|probe|read|write|erase|start|test [FILE]";
 
 static struct argp_option easypdkprog_options[] = {
   {"verbose",      'v', 0,        0,  "Verbose output" },
@@ -98,7 +99,8 @@ static error_t easypdkprog_parse_opt(int key, char *arg, struct argp_state *stat
             !strcmp(arg,"read") && 
             !strcmp(arg,"write") && 
             !strcmp(arg,"erase") && 
-            !strcmp(arg,"start") )
+            !strcmp(arg,"start") && 
+            !strcmp(arg,"test") )
         {
           argp_usage(state);
         }
@@ -693,6 +695,13 @@ int main( int argc, const char * argv [] )
       }
     }
     break;
+
+    case 't':
+    {
+      int ret = fpdk_hwtest(comfd);
+      FPDKCOM_Close(comfd);
+      return ret;
+    }
 
     case 's':
     {

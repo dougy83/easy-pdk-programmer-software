@@ -8,6 +8,7 @@ PROJECT_OVERVIEW.md
 *.o
 *.d
 *.lst
+easypdkprogtest
 
 # Build artifacts
 *.elf
