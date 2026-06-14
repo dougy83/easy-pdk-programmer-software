@@ -103,8 +103,8 @@ static void _FPDK_UpdateAdcReadings(void)
         sum_vpp += _adc_sample_buf_vpp[i];
     }
 
-    _adc_vdd = (sum_vdd * 49 + 5) / 10;   // ×4.9, rounded
-    _adc_vpp = (sum_vpp * 49 + 5) / 10;   // ×4.9, rounded
+    _adc_vdd = (sum_vdd * 49 + 5) / (10 * ADC_AVG_SAMPLES);   // average then ×4.9, rounded
+    _adc_vpp = (sum_vpp * 49 + 5) / (10 * ADC_AVG_SAMPLES);   // average then ×4.9, rounded
 }
 
 static void _FPDK_SetClkOutgoing(void)

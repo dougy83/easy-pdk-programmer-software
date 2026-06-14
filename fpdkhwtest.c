@@ -222,7 +222,7 @@ int fpdk_hwtest(const int comfd)
     {
         printf("  Please press the button on the programmer...\n");
         bool pressed = false;
-        for (int i = 0; i < 50; i++)
+        for (int i = 0; i < 200; i++)
         {
             bool state;
             if (FPDKCOM_GetButtonState(comfd, &state) && state)
@@ -230,7 +230,7 @@ int fpdk_hwtest(const int comfd)
                 pressed = true;
                 break;
             }
-            _msleep(100);  // 100ms intervals, 5s total timeout
+            _msleep(100);  // 100ms intervals, 20s total timeout
         }
 
         printf("  Result: %s\n", _passfail(pressed));

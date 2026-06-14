@@ -18,7 +18,7 @@
 #define PWM_VPP_CHANNEL         1
 #define PWM_RESOLUTION_BITS     9
 #define PWM_MAX_DUTY            511          // 2^9 - 1
-#define PWM_FREQUENCY_HZ        156250       // 80MHz / 512
+#define PWM_FREQUENCY_HZ        78000        // ~40MHz / 512 (limited by XTAL clock on ESP32-C3)
 
 // --- ADC Voltage Sense (×4.9 divider from opamp output) ---
 #define PIN_ADC_VDD_SENSE       GPIO_NUM_3

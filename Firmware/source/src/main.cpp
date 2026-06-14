@@ -23,6 +23,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 void setup(void)
 {
+    // --- CRITICAL: Wait for system to stabilize before USB init ---
+    delay(3000);
+    Serial.begin(115200);
+    delay(500);
+
     // --- LEDC PWM for VDD and VPP (9-bit, ~156kHz) ---
     ledcSetup(PWM_VDD_CHANNEL, PWM_FREQUENCY_HZ, PWM_RESOLUTION_BITS);
     ledcAttachPin(PIN_VDD_PWM, PWM_VDD_CHANNEL);
